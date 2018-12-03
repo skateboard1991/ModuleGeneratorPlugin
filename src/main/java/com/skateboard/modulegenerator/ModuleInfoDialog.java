@@ -16,13 +16,13 @@ public class ModuleInfoDialog extends JDialog {
 
     private final static String CANCEL = "CANCEL";
 
-    private final static String TITLE = "创建新module";
+    private final static String TITLE = "create module";
 
-    private final static String MODULE_NAME_HINT = "请输入模块名称:";
+    private final static String MODULE_NAME_HINT = "module name:";
 
-    private final static String PACKAGE_NAME_HINT = "请输入包名:";
+    private final static String PACKAGE_NAME_HINT = "package:";
 
-    private final static String ERROR_MESSAGE = "模块名和包名不能为空";
+    private final static String ERROR_MESSAGE = "Module name and package name cannot be empty";
 
     public ModuleInfoDialog(DialogCallback dialogCallback) {
         setSize(450, 300);
@@ -63,7 +63,7 @@ public class ModuleInfoDialog extends JDialog {
         constraints.weightx=1;
         constraints.fill=GridBagConstraints.HORIZONTAL;
         JTextField moduleNameImp = new JTextField();
-        moduleNameImp.setForeground(Color.WHITE);
+//        moduleNameImp.setForeground(Color.WHITE);
         contentPannel.add(moduleNameImp, constraints);
 
         constraints.gridx = 1;
@@ -71,7 +71,7 @@ public class ModuleInfoDialog extends JDialog {
         constraints.weightx=1;
         constraints.fill=GridBagConstraints.HORIZONTAL;
         JTextField packageNameImp = new JTextField();
-        packageNameImp.setForeground(Color.WHITE);
+//        packageNameImp.setForeground(Color.WHITE);
         contentPannel.add(packageNameImp, constraints);
 
 
@@ -111,13 +111,13 @@ public class ModuleInfoDialog extends JDialog {
             }
         });
 
+        constraints.fill=GridBagConstraints.NONE;
         constraints.anchor=WEST;
         constraints.weightx=0;
         constraints.gridx = 0;
         constraints.gridy = 2;
         contentPannel.add(okBtn, constraints);
 
-        constraints.fill=GridBagConstraints.NONE;
         constraints.gridy = 2;
         constraints.gridx = 1;
         contentPannel.add(cancelBtn, constraints);

@@ -1,6 +1,6 @@
 <idea-plugin>
     <id>com.skateboard.modulegenerator</id>
-    <name>组件化模板module产生器</name>
+    <name>module generator</name>
     <version>1.0</version>
     <vendor email="skateboard1991@163.com" url="http://www.yourcompany.com">YourCompany</vendor>
 
@@ -15,7 +15,7 @@
     </change-notes>
 
     <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
-    <idea-version since-build="173.0"/>
+    <idea-version since-build="181.0"/>
 
     <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
          on how to target different products -->
