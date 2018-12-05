@@ -29,6 +29,25 @@ public class GeneratorAction extends AnAction {
 
     private final String VALUES_DIR = "values";
 
+    private final String APPLICATION_DIR = "applicaton";
+
+    private final String BEAN_DIR = "bean";
+
+    private final String PAGING_DIR = "paging";
+
+    private final String REPOSSITORY_DIR = "repository";
+
+    private final String SERVICE_DIR = "service";
+
+    private final String UI_DIR = "ui";
+
+    private final String VIEWMODEL_DIR = "viewmodel";
+
+    private final String ACTIVITY_DIR = "activity";
+
+    private final String FRAGMENT_DIR = "fragment";
+
+
     private final String GITGNORE_FILE = ".gitgnore";
 
     private final String BUILD_FILE = "build.gradle";
@@ -98,6 +117,7 @@ public class GeneratorAction extends AnAction {
             "        sourceCompatibility JavaVersion.VERSION_1_8\n" +
             "        targetCompatibility JavaVersion.VERSION_1_8\n" +
             "    }\n" +
+            "resourcePrefix \"$moduleName\""+
             "\n" +
             "}\n" +
             "\n" +
@@ -129,7 +149,7 @@ public class GeneratorAction extends AnAction {
         String modulePath = createModuleDir(basePath, moduleName);
         createLibDir(modulePath);
         createSrc(modulePath, packageName);
-        createBuildFiles(modulePath, packageName);
+        createBuildFiles(modulePath, packageName,moduleName);
     }
 
 
@@ -173,10 +193,24 @@ public class GeneratorAction extends AnAction {
         String javaPath = createDir(mainPath, JAVA_DIR);
 
         createDir(javaPath, packageName.replace(".", File.separator));
-
+        String packagePath = createDir(javaPath, packageName.replace(".", File.separator));
+        createCodePackage(packagePath);
         createManifestFile(mainPath, packageName);
 
         createRes(mainPath);
+    }
+
+    private void createCodePackage(String packagePath) {
+
+        createDir(packagePath, APPLICATION_DIR);
+        createDir(packagePath, BEAN_DIR);
+        createDir(packagePath, PAGING_DIR);
+        createDir(packagePath, SERVICE_DIR);
+        createDir(packagePath, REPOSSITORY_DIR);
+        createDir(packagePath, VIEWMODEL_DIR);
+        String uiPath = createDir(packagePath, UI_DIR);
+        createDir(uiPath, ACTIVITY_DIR);
+        createDir(uiPath, FRAGMENT_DIR);
     }
 
     private void createManifestFile(String mainPath, String packageName) {
@@ -196,16 +230,16 @@ public class GeneratorAction extends AnAction {
     }
 
 
-    private void createBuildFiles(String modulePath, String packageName) {
+    private void createBuildFiles(String modulePath, String packageName,String moduleName) {
         createFile(modulePath, GITGNORE_FILE);
         createFile(modulePath, PROGUARD_RULES_FILE);
-        createBuildFile(modulePath, packageName);
+        createBuildFile(modulePath, packageName,moduleName);
         createGradlePropertiesFile(modulePath);
     }
 
-    private void createBuildFile(String modulePath, String packageName) {
+    private void createBuildFile(String modulePath, String packageName,String moduleName) {
         String buildFile = createFile(modulePath, BUILD_FILE);
-        writeContentToFile(GRADLE_CONTENT.replace("$packageName", packageName), buildFile);
+        writeContentToFile(GRADLE_CONTENT.replace("$packageName", packageName).replace("$moduleName",moduleName), buildFile);
     }
 
     private void createGradlePropertiesFile(String modulePath) {
